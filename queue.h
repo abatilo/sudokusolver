@@ -3,6 +3,8 @@
 
 // For fix width integer types
 #include <stdint.h>
+// For output
+#include <stdio.h>
 // For memory allocation
 #include <stdlib.h>
 // For memmove
@@ -36,6 +38,41 @@ Queue *queue_create() {
 void queue_destroy(Queue *queue) {
   free(queue->data);
   free(queue);
+}
+
+void queue_display(Queue *queue) {
+  size_t i;
+  for (i = queue->head; i < queue->tail; ++i) printf("%d ", queue->data[i]);
+  printf("\n");
+}
+
+void queue_enqueue(Queue *queue, int32_t data) {
+  // If the end of the queue is as large as its max capacity
+  // then we need to resize the queue to hold more data
+  if (queue->tail == queue->capacity) {
+    int32_t new_capacity = QUEUE_GROWTH_FACTOR * queue->capacity;
+    // Store in temp to validate a successful realloc
+    int32_t *temp_data = (int32_t *)realloc(queue->data, new_capacity * sizeof(int32_t));
+
+    // Successful realloc
+    if (temp_data != NULL) {
+      queue->data = temp_data;
+      queue->capacity = new_capacity;
+    }
+    else {
+      // TODO(aaron): Do something better here instead of just failing out
+      return;
+    }
+  }
+
+  queue->data[queue->tail] = data;
+  ++queue->tail;
+  ++queue->size;
+}
+
+void queue_dequeue(Queue *queue) {
+  ++queue->head;
+  --queue->size;
 }
 
 #endif
