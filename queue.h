@@ -58,6 +58,11 @@ void queue_enqueue(Queue *queue, int32_t data) {
     if (temp_data != NULL) {
       queue->data = temp_data;
       queue->capacity = new_capacity;
+
+      // On resize remove invalid data by moving memory over old data
+      memmove(queue->data, queue->data + queue->head, queue->size * sizeof(int32_t));
+      queue->tail -= queue->head;
+      queue->head = 0;
     }
     else {
       // TODO(aaron): Do something better here instead of just failing out
