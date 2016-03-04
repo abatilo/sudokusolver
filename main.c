@@ -1,26 +1,26 @@
 #include <stdio.h>
-#include "queue.h"
+#include "stack.h"
+#include "stack.h"
 
 int main() {
-  Queue *queue = queue_create();
+  Stack *stack = stack_create();
 
   size_t i;
   for (i = 0; i < 8; ++i) {
-    queue_enqueue(queue, (i + 1));
-    queue_display(queue);
+    stack_push(stack, (i + 1));
+    stack_display(stack);
   }
 
   for (i = 0; i < 4; ++i) {
-    queue_dequeue(queue);
-    queue_display(queue);
+    printf("%d\n", stack_pop(stack));
   }
 
   for (i = 0; i < 12; ++i) {
-    queue_enqueue(queue, (i + 1));
-    queue_display(queue);
+    stack_push(stack, (i + 1));
+    stack_display(stack);
   }
 
-  queue_destroy(queue);
+  stack_destroy(stack);
 
   return 0;
 }

@@ -75,9 +75,11 @@ void queue_enqueue(Queue *queue, int32_t data) {
   ++queue->size;
 }
 
-void queue_dequeue(Queue *queue) {
+int32_t queue_dequeue(Queue *queue) {
+  int32_t data = queue->data[queue->tail - 1];
   ++queue->head;
   --queue->size;
+  return data;
 }
 
 #endif

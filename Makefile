@@ -3,7 +3,7 @@ all: sudokusolver
 sudokusolver: main.o
 	gcc main.o -o sudokusolver
 
-main.o: main.c queue.h
+main.o: main.c queue.h stack.h
 	gcc -c main.c
 
 clean:
