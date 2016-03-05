@@ -1,0 +1,12 @@
+./sudokusolver.exe puzzles/easy1.txt 2
+./sudokusolver.exe puzzles/easy2.txt 2
+./sudokusolver.exe puzzles/easy3.txt 2
+./sudokusolver.exe puzzles/medium1.txt 2
+./sudokusolver.exe puzzles/medium2.txt 2
+./sudokusolver.exe puzzles/medium3.txt 2
+./sudokusolver.exe puzzles/hard1.txt 2
+./sudokusolver.exe puzzles/hard2.txt 2
+./sudokusolver.exe puzzles/hard3.txt 2
+./sudokusolver.exe puzzles/evil1.txt 2
+./sudokusolver.exe puzzles/evil2.txt 2
+./sudokusolver.exe puzzles/evil3.txt 2
