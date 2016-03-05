@@ -1,10 +1,10 @@
 all: sudokusolver
 
 sudokusolver: main.o
-	gcc main.o -o sudokusolver
+	g++ main.o -o sudokusolver
 
-main.o: main.c queue.h stack.h
-	gcc -c main.c
+main.o: sudoku.h main.c
+	g++ -O3 -std=c++11 -c main.c
 
 clean:
 	rm -f *.o && rm -f sudokusolver*

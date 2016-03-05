@@ -1,26 +1,19 @@
+#include <chrono>
 #include <stdio.h>
-#include "stack.h"
-#include "stack.h"
+#include "sudoku.h"
 
-int main() {
-  Stack *stack = stack_create();
+int main(int argc, char **argv) {
 
-  size_t i;
-  for (i = 0; i < 8; ++i) {
-    stack_push(stack, (i + 1));
-    stack_display(stack);
-  }
+  SudokuBoard *board = sudoku_load(argv[1]);
 
-  for (i = 0; i < 4; ++i) {
-    printf("%d\n", stack_pop(stack));
-  }
+  auto start = std::chrono::high_resolution_clock::now();
+  sudoku_depth_first(board);
+  auto end = std::chrono::high_resolution_clock::now();
+  printf("Solution in %d milliseconds\n", std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
 
-  for (i = 0; i < 12; ++i) {
-    stack_push(stack, (i + 1));
-    stack_display(stack);
-  }
 
-  stack_destroy(stack);
+  sudoku_display(board);
+  sudoku_destroy(board);
 
   return 0;
 }
